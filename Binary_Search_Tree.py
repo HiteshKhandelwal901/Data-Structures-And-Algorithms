@@ -27,6 +27,18 @@ class BST:
       - postorder
       
     """
+    
+    
+    
+    def invert_tree(self,root):
+        if root == None:
+            #print(root, " is leaf node")
+            return 
+        else:
+            root.right, root.left = root.left, root.right
+            self.invert_tree(root.left)
+            self.invert_tree(root.right)
+            
   #------------------------------- -----------------INSERT NODE BST-----------------------------------------------------------  
     def insert(self, root_node, node):
         
