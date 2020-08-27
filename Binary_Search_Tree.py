@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[23]:
-
-
 from dataclasses import dataclass
 
 @dataclass
@@ -113,7 +107,7 @@ class BST:
             else:
                 return self.search(key, root.right)
             
-
+##--------------------------------------------DELETE BST ------------------------------------------
             
     def delete(self, key, root):
         #if even after reaching the leaf node, key is not found then left.next( root) will be none and hence return
@@ -146,17 +140,8 @@ class BST:
                     root.right = self.delete(root.right, temp.key)
         return root
                     
-                    
-                
-                
-        
-        
-        
-    
 
-
-# In[24]:
-
+#--------------------------------------------RUNNING BST ------------------------------------------
 
 A = [20,30,40,50,60,70,80]
 root = node(A[0])
@@ -172,70 +157,3 @@ print("----- deleting-item --------------")
 Bst.delete (30, root)
 print("-----travesing BST ater deleting ----------")
 Bst.inorder_travs(root)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
