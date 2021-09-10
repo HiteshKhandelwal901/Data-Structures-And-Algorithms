@@ -17,20 +17,29 @@ class Double_LinkedList:
     def Push_at_start(self, data):
         #check if empty node
         if self.head == None:
+            #print("empty")
             #this node becomes the head now (first node)
             self.head = Node(data)
+            self.headcopy = self.head
+            #print("self.head = ", self.head.data)
         #No the first node, i.e, first node exists already
         else:
             #create the new node with curr data
             newnode = Node(data)
+            #print("newnode = ", newnode.data)
             #this new node will be inserted at beg, will have next as head
             newnode.next = self.head
+            #print("newnode.next = ",newnode.next.data)
             #curr head had prev as none but now will have this new ndoe as prev
             self.head.prev = newnode
+            #print("self.head.prev = ", self.head.prev.data)
             #now let the newnode pushed at beg be the head.
             self.head = newnode
+            #print("self.head  = ", self.head.data)
             #for next push, this nserted new node will act as beg/head.
+
         print("pushed {} at the beg".format(data))
+        #print(self.head.data)
 
     def Push_at_end(self, data):
         #check if head exists ? bascially empty ll
@@ -50,29 +59,55 @@ class Double_LinkedList:
             self.head = newnode
         print("pushed {} at the end".format(data))
 
-
-    def traverse_backwards(self):
-        #last node in the linked list
-        curr_node = self.head
-        #traverse backwards from this last node using prev pointer
-        while curr_node!= None:
-            print(curr_node.data)
-            curr_node = curr_node.prev
-
-    def traverse_forward(self):
+   #traverse in the order of First in First  out.
+    def FIFO(self, insertion_id):
+        #id =1 => 10->20->30->40 (hc = 10, h = 40). id = 2 => 40->30->20->10 (hc = 10, h = 40).
         curr_node = self.headcopy
-        while curr_node!=None:
-            print(curr_node.data)
-            curr_node = curr_node.next
+        #if id = 1, then move forward from headcopy
+        if insertion_id == 1:
+            while(curr_node!=None):
+                print(curr_node.data)
+                curr_node = curr_node.next
+        #if id!=1 move backword from headcopy
+        else:
+            while(curr_node!=None):
+                print(curr_node.data)
+                curr_node = curr_node.prev
+
+
+    # in order of last in first out
+    def LIFO(self, insertion_id):
+        #now from the abive example we start from head and move from there
+        curr_node = self.head
+        #if id =1 move bacwards from head
+        if insertion_id == 1:
+            while(curr_node!=None):
+                print(curr_node.data)
+                curr_node = curr_node.prev
+        #if id!=1 move forward from there
+        else:
+            while(curr_node!=None):
+                print(curr_node.data)
+                curr_node = curr_node.next
+
+
 
     #driver code
 if __name__ == '__main__':
-    dll =  Double_LinkedList()
-    dll.Push_at_end(10)
-    dll.Push_at_end(20)
-    dll.Push_at_end(30)
-    dll.Push_at_end(30)
-    print("----backwards----")
-    dll.traverse_backwards()
-    print("------forward -----")
-    dll.traverse_forward()
+    dll_start =  Double_LinkedList()
+    dll_end  = Double_LinkedList()
+    dll.Push_at_start(10)
+    dll.Push_at_start(20)
+    dll.Push_at_start(30)
+    dll.Push_at_start(30)
+    print("----FIFO----")
+    dll_start.FIFO(2)
+    print("------LIFO -----")
+    dll_start.LIFO(2)
+
+    dll_end.Push_at_end(10)
+    dll_end.Push_at_end(20)
+    dll_end.Push_at_end(30)
+    dll_end.Push_at_end(40)
+    dll_end.FIFO(1)
+    dll_start.LIFO(2)
